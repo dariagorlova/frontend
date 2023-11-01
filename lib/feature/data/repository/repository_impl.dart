@@ -18,13 +18,12 @@ class RepositoryImpl implements Repository {
     required this.networkInfo,
   });
 
-
   @override
-  Future<Either<Failure, void>> createUser(String email, String password, String userName)async {
+  Future<Either<Failure, void>> createUser(String email, String password, String userName) async {
     if (await networkInfo.isConnected) {
       try {
         final deviceId = getDeviceIdFromCache();
-        return Right(Future.value(remoteDataSource.createUser(email, password, userName, deviceId)));
+        return Right(await remoteDataSource.createUser(email, password, userName, deviceId));
       } on ServerException catch (e) {
         return Left(Failure.serverFailure(message: e.message));
       } on StatusCodeException catch (e) {
@@ -40,7 +39,7 @@ class RepositoryImpl implements Repository {
     if (await networkInfo.isConnected) {
       try {
         final user = getUserCache();
-        return Right(Future.value(remoteDataSource.deleteAccount(user.token)));
+        return Right(await remoteDataSource.deleteAccount(user.token));
       } on ServerException catch (e) {
         return Left(Failure.serverFailure(message: e.message));
       } on StatusCodeException catch (e) {
@@ -74,7 +73,7 @@ class RepositoryImpl implements Repository {
     if (await networkInfo.isConnected) {
       try {
         final user = getUserCache();
-        return Right(Future.value(remoteDataSource.logout(user.token)));
+        return Right(await remoteDataSource.logout(user.token));
       } on ServerException catch (e) {
         return Left(Failure.serverFailure(message: e.message));
       } on StatusCodeException catch (e) {
@@ -86,7 +85,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, bool>> isAuthenticated() async{
+  Future<Either<Failure, bool>> isAuthenticated() async {
     if (await networkInfo.isConnected) {
       try {
         final user = getUserCache();
@@ -103,19 +102,30 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<void> setDeviceIdToCache(String deviceId) =>
-    localDataSource.setDeviceIdToCache(deviceId);
+  Future<void> setDeviceIdToCache(String deviceId) => localDataSource.setDeviceIdToCache(deviceId);
 
   @override
-  String getDeviceIdFromCache() =>
-    localDataSource.getDeviceIdFromCache();
-
+  String getDeviceIdFromCache() => localDataSource.getDeviceIdFromCache();
 
   @override
-  Future<void> setUserCache(User user) =>
-      localDataSource.setUserCache(user);
+  Future<void> setUserCache(User user) => localDataSource.setUserCache(user);
 
   @override
-  User getUserCache() =>
-    localDataSource.getUserCache();
+  User getUserCache() => localDataSource.getUserCache();
+
+  @override
+  Future<Either<Failure, void>> updateUser(String userName) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final user = getUserCache();
+        return Right(await remoteDataSource.updateUser(user.token, userName));
+      } on ServerException catch (e) {
+        return Left(Failure.serverFailure(message: e.message));
+      } on StatusCodeException catch (e) {
+        return Left(Failure.statusCode(statusCode: e.statusCode));
+      }
+    } else {
+      return const Left(Failure.serverFailure(message: 'Check the Internet connection'));
+    }
+  }
 }

@@ -31,7 +31,10 @@ class HTTPManager {
     String? token,
   }) async {
     try {
-      final options = Options(headers: {'token': token ?? '', 'contentType': 'application/json'});
+      final options = Options(
+          followRedirects: false,
+          validateStatus: (status) => (status ?? 0) < 500,
+          headers: {'token': token ?? '', 'contentType': 'application/json'});
       final response = await dio.get<Object>(
         url,
         data: params,
@@ -43,7 +46,13 @@ class HTTPManager {
       if (response.statusCode == 426) {
         throw const StatusCodeException(426);
       }
-      return response.data;
+
+      final result = response.data as Map<String, dynamic>;
+      if (result['status'] == 'success') {
+        return result;
+      } else {
+        throw ServerException(result['message']);
+      }
     } on DioException catch (error, _) {
       throw const ServerException('something went wrong');
     }
@@ -55,7 +64,10 @@ class HTTPManager {
     String? token,
   }) async {
     try {
-      final options = Options(headers: {'token': token ?? '', 'contentType': 'application/json'});
+      final options = Options(
+          followRedirects: false,
+          validateStatus: (status) => (status ?? 0) < 500,
+          headers: {'token': token ?? '', 'contentType': 'application/json'});
       final response = await dio.post<Object>(
         url,
         data: params,
@@ -67,7 +79,12 @@ class HTTPManager {
       if (response.statusCode == 426) {
         throw const StatusCodeException(426);
       }
-      return response.data;
+      final result = response.data as Map<String, dynamic>;
+      if (result['status'] == 'success') {
+        return result;
+      } else {
+        throw ServerException(result['message']);
+      }
     } on DioException catch (error, _) {
       throw const ServerException('something went wrong');
     }

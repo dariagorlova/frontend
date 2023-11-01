@@ -1,145 +1,131 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:frontend/feature/presentation/bloc/auth/auth_cubit.dart';
-import 'package:frontend/feature/presentation/screens/auth/auth_screen.dart';
-import 'package:frontend/feature/presentation/screens/main_tab_screen.dart';
-import 'package:frontend/feature/presentation/widgets/error_toast.dart';
+import 'package:frontend/feature/presentation/widgets/page_layout_helpers.dart';
+import 'package:frontend/feature/presentation/widgets/rectangle_button.dart';
 import 'package:frontend/feature/presentation/widgets/text_field_widget.dart';
+import 'package:frontend/mobile_navigation.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({
+    required this.controllerEmail,
+    required this.controllerPassword,
+    this.loginAction,
+    this.forgotPasswordScreenOpen,
+    this.signUpScreenOpen,
+    super.key,
+  });
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final controllerEmail = TextEditingController();
-  final controllerPassword = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controllerEmail.dispose();
-    controllerPassword.dispose();
-    super.dispose();
-  }
+  final TextEditingController controllerEmail;
+  final TextEditingController controllerPassword;
+  final VoidCallback? loginAction;
+  final VoidCallback? forgotPasswordScreenOpen;
+  final VoidCallback? signUpScreenOpen;
 
   @override
   Widget build(BuildContext context) {
     final buttonWidth = min<double>(MediaQuery.of(context).size.width * 0.8, 400);
+    const topPanelHeight = 24;
 
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        state.maybeWhen(
-            error: (message) => ScaffoldMessenger.of(context).showSnackBar(
-                  errorToasts(message: message),
-                ),
-            showResentEmailPopup: () {
-              final alertDialog = CupertinoAlertDialog(
-                title: const Text("Email verification"),
-                content: const Text(
-                    "Please confirm your email first. To resend an verification email click the corresponding button"),
-                actions: [
-                  CupertinoButton(
-                      child: const Text('Resend'),
-                      onPressed: () {
-                        // TODO: verifyEmail
-                        context.read<AuthCubit>().verifyEmail(controllerEmail.text.trim());
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext ctx) => const AuthScreen(),
-                          ),
-                        );
-                      }),
-                  CupertinoButton(
-                    child: const Text('Ok'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext ctx) => const AuthScreen(),
-                        ),
-                      );
-                    },
-                  )
-                ],
-              );
-              showDialog(
-                barrierDismissible: false,
-                builder: (ctx) {
-                  return alertDialog;
-                },
-                context: context,
-              );
-            },
-            success: (user) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext ctx) => MainTabScreen(
-                    name: user.userName,
-                    password: user.password ?? '',
-                    email: user.email,
-                    referalCode: user.referalCode ?? '',
+    return Scaffold(
+      body: GestureDetector(
+        onTap: FocusScope.of(context).unfocus,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - topPanelHeight,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: MobileNavigationActions.instance.backToPreviousPage,
                   ),
                 ),
-              );
-            },
-            orElse: () {});
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Login'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextFieldWidget(
-                controller: controllerEmail,
-                labelText: 'Email',
-                hintText: 'your@email.com',
-                isEmail: true,
-                icon: FontAwesome.mail,
-                width: buttonWidth,
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              TextFieldWidget(
-                controller: controllerPassword,
-                icon: FontAwesome.lock,
-                labelText: 'Password',
-                hintText: '********',
-                isPassword: true,
-                width: buttonWidth,
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: _loginAction,
-                child: const Text('LOGIN'),
-              ),
-            ],
+                const Padding(
+                  padding: EdgeInsets.only(left: 50),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 36),
+                  ),
+                ),
+                const Spacer(),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ScreenHelper.h32,
+                      TextFieldWidget(
+                        controller: controllerEmail,
+                        labelText: 'Email',
+                        hintText: 'your@email.com',
+                        isEmail: true,
+                        icon: FontAwesome.mail,
+                        width: buttonWidth,
+                      ),
+                      ScreenHelper.h32,
+                      TextFieldWidget(
+                        controller: controllerPassword,
+                        icon: FontAwesome.lock,
+                        labelText: 'Password',
+                        hintText: '********',
+                        isPassword: true,
+                        width: buttonWidth,
+                      ),
+                      ScreenHelper.h40,
+                      RectangleButton(text: 'LOGIN', onClick: loginAction, width: buttonWidth),
+                      ScreenHelper.h40,
+                      GestureDetector(
+                        onTap: () {
+                          MobileNavigationActions.instance.backToPreviousPage();
+                          forgotPasswordScreenOpen?.call();
+                        },
+                        child: const Text(
+                          'Forgot your password?',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      ScreenHelper.h40,
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Don\'t have an account? ',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        MobileNavigationActions.instance.backToPreviousPage();
+                        signUpScreenOpen?.call();
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                ScreenHelper.h50,
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  void _loginAction() {
-    context.read<AuthCubit>().logIn(
-          controllerEmail.text.trim(),
-          controllerPassword.text.trim(),
-        );
   }
 }

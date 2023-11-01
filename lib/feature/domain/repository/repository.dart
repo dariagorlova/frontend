@@ -14,7 +14,6 @@ abstract class Repository {
   Future<Either<Failure, User>> login(String email, String password);
   Future<Either<Failure, void>> logout();
   Future<Either<Failure, void>> createUser(String email, String password, String userName);
+  Future<Either<Failure, void>> updateUser(String userName);
   Future<Either<Failure, void>> deleteAccount();
-
-
 }

@@ -20,33 +20,24 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
+    required TResult Function() restricted,
+    required TResult Function(User user) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
+    TResult? Function()? restricted,
+    TResult? Function(User user)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
+    TResult Function()? restricted,
+    TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,36 +45,24 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
+    required TResult Function(_Restricted value) restricted,
+    required TResult Function(_Authenticated value) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult? Function(_Restricted value)? restricted,
+    TResult? Function(_Authenticated value)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult Function(_Restricted value)? restricted,
+    TResult Function(_Authenticated value)? authenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,11 +125,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
+    required TResult Function() restricted,
+    required TResult Function(User user) authenticated,
   }) {
     return initial();
   }
@@ -160,11 +136,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
+    TResult? Function()? restricted,
+    TResult? Function(User user)? authenticated,
   }) {
     return initial?.call();
   }
@@ -174,11 +147,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
+    TResult Function()? restricted,
+    TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -192,12 +162,8 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
+    required TResult Function(_Restricted value) restricted,
+    required TResult Function(_Authenticated value) authenticated,
   }) {
     return initial(this);
   }
@@ -207,12 +173,8 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult? Function(_Restricted value)? restricted,
+    TResult? Function(_Authenticated value)? authenticated,
   }) {
     return initial?.call(this);
   }
@@ -222,12 +184,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult Function(_Restricted value)? restricted,
+    TResult Function(_Authenticated value)? authenticated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -281,11 +239,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
+    required TResult Function() restricted,
+    required TResult Function(User user) authenticated,
   }) {
     return loading();
   }
@@ -295,11 +250,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
+    TResult? Function()? restricted,
+    TResult? Function(User user)? authenticated,
   }) {
     return loading?.call();
   }
@@ -309,11 +261,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
+    TResult Function()? restricted,
+    TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -327,12 +276,8 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
+    required TResult Function(_Restricted value) restricted,
+    required TResult Function(_Authenticated value) authenticated,
   }) {
     return loading(this);
   }
@@ -342,12 +287,8 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult? Function(_Restricted value)? restricted,
+    TResult? Function(_Authenticated value)? authenticated,
   }) {
     return loading?.call(this);
   }
@@ -357,12 +298,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult Function(_Restricted value)? restricted,
+    TResult Function(_Authenticated value)? authenticated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -377,78 +314,49 @@ abstract class _Loading implements AuthState {
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
+abstract class _$$RestrictedImplCopyWith<$Res> {
+  factory _$$RestrictedImplCopyWith(
+          _$RestrictedImpl value, $Res Function(_$RestrictedImpl) then) =
+      __$$RestrictedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$RestrictedImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$RestrictedImpl>
+    implements _$$RestrictedImplCopyWith<$Res> {
+  __$$RestrictedImplCopyWithImpl(
+      _$RestrictedImpl _value, $Res Function(_$RestrictedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$ErrorImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl({required this.message});
-
-  @override
-  final String message;
+class _$RestrictedImpl implements _Restricted {
+  const _$RestrictedImpl();
 
   @override
   String toString() {
-    return 'AuthState.error(message: $message)';
+    return 'AuthState.restricted()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+        (other.runtimeType == runtimeType && other is _$RestrictedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
+    required TResult Function() restricted,
+    required TResult Function(User user) authenticated,
   }) {
-    return error(message);
+    return restricted();
   }
 
   @override
@@ -456,13 +364,10 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
+    TResult? Function()? restricted,
+    TResult? Function(User user)? authenticated,
   }) {
-    return error?.call(message);
+    return restricted?.call();
   }
 
   @override
@@ -470,15 +375,12 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
+    TResult Function()? restricted,
+    TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(message);
+    if (restricted != null) {
+      return restricted();
     }
     return orElse();
   }
@@ -488,14 +390,10 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
+    required TResult Function(_Restricted value) restricted,
+    required TResult Function(_Authenticated value) authenticated,
   }) {
-    return error(this);
+    return restricted(this);
   }
 
   @override
@@ -503,14 +401,10 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult? Function(_Restricted value)? restricted,
+    TResult? Function(_Authenticated value)? authenticated,
   }) {
-    return error?.call(this);
+    return restricted?.call(this);
   }
 
   @override
@@ -518,35 +412,26 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult Function(_Restricted value)? restricted,
+    TResult Function(_Authenticated value)? authenticated,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (restricted != null) {
+      return restricted(this);
     }
     return orElse();
   }
 }
 
-abstract class _Error implements AuthState {
-  const factory _Error({required final String message}) = _$ErrorImpl;
-
-  String get message;
-  @JsonKey(ignore: true)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Restricted implements AuthState {
+  const factory _Restricted() = _$RestrictedImpl;
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$AuthenticatedImplCopyWith<$Res> {
+  factory _$$AuthenticatedImplCopyWith(
+          _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
+      __$$AuthenticatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({User user});
 
@@ -554,11 +439,11 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$AuthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthenticatedImpl>
+    implements _$$AuthenticatedImplCopyWith<$Res> {
+  __$$AuthenticatedImplCopyWithImpl(
+      _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -566,7 +451,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$AuthenticatedImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -585,22 +470,22 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.user});
+class _$AuthenticatedImpl implements _Authenticated {
+  const _$AuthenticatedImpl({required this.user});
 
   @override
   final User user;
 
   @override
   String toString() {
-    return 'AuthState.success(user: $user)';
+    return 'AuthState.authenticated(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$AuthenticatedImpl &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -610,21 +495,18 @@ class _$SuccessImpl implements _Success {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
+      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
+    required TResult Function() restricted,
+    required TResult Function(User user) authenticated,
   }) {
-    return success(user);
+    return authenticated(user);
   }
 
   @override
@@ -632,13 +514,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
+    TResult? Function()? restricted,
+    TResult? Function(User user)? authenticated,
   }) {
-    return success?.call(user);
+    return authenticated?.call(user);
   }
 
   @override
@@ -646,15 +525,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
+    TResult Function()? restricted,
+    TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(user);
+    if (authenticated != null) {
+      return authenticated(user);
     }
     return orElse();
   }
@@ -664,14 +540,10 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
+    required TResult Function(_Restricted value) restricted,
+    required TResult Function(_Authenticated value) authenticated,
   }) {
-    return success(this);
+    return authenticated(this);
   }
 
   @override
@@ -679,14 +551,10 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult? Function(_Restricted value)? restricted,
+    TResult? Function(_Authenticated value)? authenticated,
   }) {
-    return success?.call(this);
+    return authenticated?.call(this);
   }
 
   @override
@@ -694,435 +562,23 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
+    TResult Function(_Restricted value)? restricted,
+    TResult Function(_Authenticated value)? authenticated,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (authenticated != null) {
+      return authenticated(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements AuthState {
-  const factory _Success({required final User user}) = _$SuccessImpl;
+abstract class _Authenticated implements AuthState {
+  const factory _Authenticated({required final User user}) =
+      _$AuthenticatedImpl;
 
   User get user;
   @JsonKey(ignore: true)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$showEmailNeedVerifyScreenImplCopyWith<$Res> {
-  factory _$$showEmailNeedVerifyScreenImplCopyWith(
-          _$showEmailNeedVerifyScreenImpl value,
-          $Res Function(_$showEmailNeedVerifyScreenImpl) then) =
-      __$$showEmailNeedVerifyScreenImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$showEmailNeedVerifyScreenImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$showEmailNeedVerifyScreenImpl>
-    implements _$$showEmailNeedVerifyScreenImplCopyWith<$Res> {
-  __$$showEmailNeedVerifyScreenImplCopyWithImpl(
-      _$showEmailNeedVerifyScreenImpl _value,
-      $Res Function(_$showEmailNeedVerifyScreenImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$showEmailNeedVerifyScreenImpl implements _showEmailNeedVerifyScreen {
-  const _$showEmailNeedVerifyScreenImpl();
-
-  @override
-  String toString() {
-    return 'AuthState.showEmailNeedVerifyScreen()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$showEmailNeedVerifyScreenImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
-  }) {
-    return showEmailNeedVerifyScreen();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
-  }) {
-    return showEmailNeedVerifyScreen?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (showEmailNeedVerifyScreen != null) {
-      return showEmailNeedVerifyScreen();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
-  }) {
-    return showEmailNeedVerifyScreen(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
-  }) {
-    return showEmailNeedVerifyScreen?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (showEmailNeedVerifyScreen != null) {
-      return showEmailNeedVerifyScreen(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _showEmailNeedVerifyScreen implements AuthState {
-  const factory _showEmailNeedVerifyScreen() = _$showEmailNeedVerifyScreenImpl;
-}
-
-/// @nodoc
-abstract class _$$showResentEmailPopupImplCopyWith<$Res> {
-  factory _$$showResentEmailPopupImplCopyWith(_$showResentEmailPopupImpl value,
-          $Res Function(_$showResentEmailPopupImpl) then) =
-      __$$showResentEmailPopupImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$showResentEmailPopupImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$showResentEmailPopupImpl>
-    implements _$$showResentEmailPopupImplCopyWith<$Res> {
-  __$$showResentEmailPopupImplCopyWithImpl(_$showResentEmailPopupImpl _value,
-      $Res Function(_$showResentEmailPopupImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$showResentEmailPopupImpl implements _showResentEmailPopup {
-  const _$showResentEmailPopupImpl();
-
-  @override
-  String toString() {
-    return 'AuthState.showResentEmailPopup()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$showResentEmailPopupImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
-  }) {
-    return showResentEmailPopup();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
-  }) {
-    return showResentEmailPopup?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (showResentEmailPopup != null) {
-      return showResentEmailPopup();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
-  }) {
-    return showResentEmailPopup(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
-  }) {
-    return showResentEmailPopup?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (showResentEmailPopup != null) {
-      return showResentEmailPopup(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _showResentEmailPopup implements AuthState {
-  const factory _showResentEmailPopup() = _$showResentEmailPopupImpl;
-}
-
-/// @nodoc
-abstract class _$$moveToLoginPageImplCopyWith<$Res> {
-  factory _$$moveToLoginPageImplCopyWith(_$moveToLoginPageImpl value,
-          $Res Function(_$moveToLoginPageImpl) then) =
-      __$$moveToLoginPageImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$moveToLoginPageImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$moveToLoginPageImpl>
-    implements _$$moveToLoginPageImplCopyWith<$Res> {
-  __$$moveToLoginPageImplCopyWithImpl(
-      _$moveToLoginPageImpl _value, $Res Function(_$moveToLoginPageImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$moveToLoginPageImpl implements _moveToLoginPage {
-  const _$moveToLoginPageImpl();
-
-  @override
-  String toString() {
-    return 'AuthState.moveToLoginPage()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$moveToLoginPageImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(User user) success,
-    required TResult Function() showEmailNeedVerifyScreen,
-    required TResult Function() showResentEmailPopup,
-    required TResult Function() moveToLoginPage,
-  }) {
-    return moveToLoginPage();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(User user)? success,
-    TResult? Function()? showEmailNeedVerifyScreen,
-    TResult? Function()? showResentEmailPopup,
-    TResult? Function()? moveToLoginPage,
-  }) {
-    return moveToLoginPage?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(User user)? success,
-    TResult Function()? showEmailNeedVerifyScreen,
-    TResult Function()? showResentEmailPopup,
-    TResult Function()? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (moveToLoginPage != null) {
-      return moveToLoginPage();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
-    required TResult Function(_showEmailNeedVerifyScreen value)
-        showEmailNeedVerifyScreen,
-    required TResult Function(_showResentEmailPopup value) showResentEmailPopup,
-    required TResult Function(_moveToLoginPage value) moveToLoginPage,
-  }) {
-    return moveToLoginPage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult? Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult? Function(_moveToLoginPage value)? moveToLoginPage,
-  }) {
-    return moveToLoginPage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
-    TResult Function(_showEmailNeedVerifyScreen value)?
-        showEmailNeedVerifyScreen,
-    TResult Function(_showResentEmailPopup value)? showResentEmailPopup,
-    TResult Function(_moveToLoginPage value)? moveToLoginPage,
-    required TResult orElse(),
-  }) {
-    if (moveToLoginPage != null) {
-      return moveToLoginPage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _moveToLoginPage implements AuthState {
-  const factory _moveToLoginPage() = _$moveToLoginPageImpl;
 }

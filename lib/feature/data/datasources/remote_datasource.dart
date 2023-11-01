@@ -8,6 +8,10 @@ abstract class RemoteDataSource {
   Future<User> login(String email, String password, String deviceId);
   Future<void> logout(String? token);
   Future<void> createUser(String email, String password, String userName, String deviceId);
+  Future<void> updateUser(
+    String? token,
+    String userName,
+  );
   Future<void> deleteAccount(String? token);
 }
 
@@ -40,10 +44,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<void> deleteAccount(String? token) async {
     try {
-      await httpManager.post(
-        url: 'auth/delete',
-        token: token,
-      );
+      await httpManager.post(url: 'auth/delete', token: token);
     } on ServerException catch (_) {
       rethrow;
     } on StatusCodeException catch (_) {
@@ -55,7 +56,16 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<bool> isAuthenticated(String? token) async {
-    return false;
+    try {
+      final res = await httpManager.get(url: 'auth/auth', token: token);
+      return res['message'] == 'success';
+    } on ServerException catch (_) {
+      rethrow;
+    } on StatusCodeException catch (_) {
+      rethrow;
+    } catch (error, _) {
+      throw const ServerException('something went wrong');
+    }
   }
 
   @override
@@ -82,10 +92,25 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<void> logout(String? token) async {
     try {
-      await httpManager.get(
-        url: 'auth/logout',
-        token: token,
-      );
+      await httpManager.get(url: 'auth/logout', token: token);
+    } on ServerException catch (_) {
+      rethrow;
+    } on StatusCodeException catch (_) {
+      rethrow;
+    } catch (error, _) {
+      throw const ServerException('something went wrong');
+    }
+  }
+
+  @override
+  Future<void> updateUser(String? token, String userName) async {
+    try {
+      await httpManager.post(
+          url: 'auth/update',
+          params: {
+            "user_name": userName,
+          },
+          token: token);
     } on ServerException catch (_) {
       rethrow;
     } on StatusCodeException catch (_) {

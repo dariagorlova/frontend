@@ -1,22 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:frontend/feature/presentation/screens/auth/auth_screen.dart';
+import 'package:frontend/core/constants.dart';
+import 'package:frontend/feature/presentation/bloc/user/user_cubit.dart';
+import 'package:frontend/feature/presentation/widgets/page_layout_helpers.dart';
+import 'package:frontend/feature/presentation/widgets/rectangle_button.dart';
 import 'package:frontend/feature/presentation/widgets/text_field_widget.dart';
+import 'package:shared_models/shared_models.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen(
-      {required this.name,
-      required this.email,
-      required this.password,
-      required this.referalCode,
-      super.key});
-
-  final String name;
-  final String password;
-  final String email;
-  final String referalCode;
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -27,14 +22,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final controllerPassword = TextEditingController();
   final controllerName = TextEditingController();
   final controllerRefCode = TextEditingController();
+  final user = User.empty();
 
   @override
   void initState() {
     super.initState();
-    controllerName.text = widget.name;
-    controllerPassword.text = widget.password;
-    controllerEmail.text = widget.email;
-    controllerRefCode.text = widget.referalCode;
+    controllerName.text = user.userName;
+    controllerPassword.text = user.password ?? '';
+    controllerEmail.text = user.email;
+    controllerRefCode.text = user.referalCode ?? '';
   }
 
   @override
@@ -65,9 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               icon: FontAwesome.user,
               width: buttonWidth,
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            ScreenHelper.h32,
             TextFieldWidget(
               controller: controllerEmail,
               labelText: 'Email',
@@ -76,9 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               icon: FontAwesome.mail,
               width: buttonWidth,
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            ScreenHelper.h32,
             TextFieldWidget(
               controller: controllerPassword,
               icon: FontAwesome.lock,
@@ -87,9 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isPassword: true,
               width: buttonWidth,
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            ScreenHelper.h32,
             TextFieldWidget(
               controller: controllerRefCode,
               labelText: 'Referal code',
@@ -97,56 +87,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
               icon: FontAwesome.users,
               width: buttonWidth,
             ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: _updateAction,
-              child: const Text('UPDATE'),
-            ),
-            ElevatedButton(
-              onPressed: _logoutAction,
-              child: const Text('LOG OUT'),
-            ),
-            ElevatedButton(
-              onPressed: _deleteUserAction,
-              child: const Text('DELETE ACCOUNT'),
-            ),
+            ScreenHelper.h40,
+            RectangleButton(
+                onClick: _updateAction,
+                width: 150,
+                text: 'UPDATE',
+                //icon: FontAwesome.logout,
+                bgColor: defaultRectangleButtonColor,
+                textColor: defaultRectangleButtonTextColor,
+                fontSize: 12),
+            ScreenHelper.h8,
+            RectangleButton(
+                onClick: _logoutAction,
+                width: 150,
+                text: 'LOGOUT',
+                //icon: FontAwesome.logout,
+                bgColor: defaultRectangleButtonColor,
+                textColor: defaultRectangleButtonTextColor,
+                fontSize: 12),
+            ScreenHelper.h8,
+            RectangleButton(
+                onClick: _deleteUserAction,
+                width: 150,
+                text: 'DELETE ACCOUNT',
+                //icon: FontAwesome.logout,
+                bgColor: defaultRectangleButtonColor,
+                textColor: defaultRectangleButtonTextColor,
+                fontSize: 12),
           ],
         ),
       ),
     );
   }
 
-  void _updateAction() {
-    // context.read<auth.AuthCubit>().signUp(
-    //   controllerEmail.text.trim(),
-    //   controllerPassword.text.trim(),
-    //   controllerName.text.trim(),
-    // );
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext ctx) => const AuthScreen(),
-      ),
-    );
-  }
-
-  void _logoutAction() {
-    //
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext ctx) => const AuthScreen(),
-      ),
-    );
-  }
-
-  void _deleteUserAction() {
-    //
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext ctx) => const AuthScreen(),
-      ),
-    );
-  }
+  void _updateAction() => context.read<UserCubit>().changeName(controllerName.text.trim());
+  void _logoutAction() => context.read<UserCubit>().logOut();
+  void _deleteUserAction() => context.read<UserCubit>().deleteAccount();
 }

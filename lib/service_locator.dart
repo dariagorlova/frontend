@@ -1,3 +1,7 @@
+import 'package:flutter/foundation.dart';
+import 'package:frontend/core/navigation/navigation.dart';
+import 'package:frontend/feature/presentation/bloc/user/user_cubit.dart';
+import 'package:frontend/mobile_navigation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:frontend/core/http_manager.dart';
 import 'package:frontend/core/network_info.dart';
@@ -13,6 +17,7 @@ final instance = GetIt.instance;
 Future<void> initDI() async {
   //BLoC
   instance.registerLazySingleton(() => AuthCubit(repository: instance()));
+  instance.registerLazySingleton(() => UserCubit(repository: instance()));
 
   //Repository
   instance.registerLazySingleton<Repository>(
@@ -33,6 +38,9 @@ Future<void> initDI() async {
 
   final sharedPreferences = await SharedPreferences.getInstance();
   instance.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
+  instance.registerSingleton<AppNavigation>(
+      kIsWeb ? MobileNavigationImpl() /*need web here*/ : MobileNavigationImpl());
 
   await instance.allReady();
 }
