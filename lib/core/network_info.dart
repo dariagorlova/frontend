@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 /// base abstract class for checking internet connection
 abstract class NetworkInfo {
   /// if "true" - we have internet connection
@@ -13,6 +15,7 @@ class NetworkInfoImpl implements NetworkInfo {
   /// just looks if the "example.com" available
   @override
   Future<bool> get isConnected async {
+    if (kIsWeb) return true;
     try {
       final result = await InternetAddress.lookup('example.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
