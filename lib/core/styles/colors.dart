@@ -11,6 +11,8 @@ class GymismoColors {
   static const Color silver = Color.fromRGBO(196, 196, 196, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color lightSkyBlue = Color.fromRGBO(128, 218, 255, 1);
+  static const Color cerulean = Color.fromRGBO(3, 160, 224, 1);
   static const Color grayText_2 = Color.fromRGBO(169, 169, 169, 1);
   static const Color mineshaft = Color.fromRGBO(49, 49, 49, 1);
+  static const Color burntSienna = Color.fromRGBO(235, 87, 87, 1);
 }

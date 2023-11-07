@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common_widgets/authorization_option_buttons.dart';
-import 'package:frontend/common_widgets/do_not_have_an_account.dart';
+import 'package:frontend/common_widgets/do_not_have_an_account_with_or.dart';
 import 'package:frontend/common_widgets/term_and_condition_widget.dart';
 import 'package:frontend/core/common_method.dart';
+import 'package:frontend/core/navigation/navigations_keys.dart';
 import 'package:frontend/core/styles/colors.dart';
 import 'package:frontend/core/styles/images.dart';
 import 'package:frontend/core/styles/styles.dart';
@@ -13,10 +14,11 @@ import 'package:frontend/features/main_page/presentation/screen/main_page.dart';
 import 'package:frontend/features/user_page/presentation/bloc/user_cubit.dart';
 import 'package:frontend/features/user_page/presentation/screens/login_screen.dart';
 import 'package:frontend/features/user_page/presentation/screens/signup_screen.dart';
+import 'package:frontend/features/user_page/presentation/screens/widgets/check_your_email_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AuthScreen extends StatefulWidget {
-  static const String route = '/auth';
+  static const String route = NavigationRouteNames.authScreen;
   const AuthScreen({super.key});
 
   @override
@@ -26,6 +28,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   AnimationController? controllerAnimation;
   var controllerName = TextEditingController();
+  var controllerLastName = TextEditingController();
   var controllerEmail = TextEditingController();
   var controllerPassword = TextEditingController();
   var controllerRefCode = TextEditingController();
@@ -43,6 +46,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   void dispose() {
     controllerAnimation?.dispose();
     controllerName.dispose();
+    controllerLastName.dispose();
     controllerEmail.dispose();
     controllerPassword.dispose();
     controllerRefCode.dispose();
@@ -176,7 +180,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                         buttonsPadding: GymismoStyles.spacingSmall,
                       ),
                       GymismoStyles.h16,
-                      DoNotHaveAnAccount(
+                      DoNotHaveAnAccountWithOr(
                         isLogin: _isLogin,
                         onLoginModeChange: () {
                           setState(() {
@@ -243,9 +247,10 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
         controllerEmail: controllerEmail,
         controllerPassword: controllerPassword,
         controllerName: controllerName,
+        controllerLastName: controllerLastName,
+        controllerRefCode: controllerRefCode,
         signUpAction: _signUpAction,
         loginScreenOpen: _loginButtonClick,
-        controllerRefCode: controllerRefCode,
       ),
     );
   }
@@ -289,6 +294,22 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     if (result) {
       // move to nice screen, that will tell us about sent verification email
       //MobileNavigationActions.instance.showCheckYourEmailScreen(email: controllerEmail.text.trim());
+
+      if (mounted) {
+        Utils.slideFromBottom(
+          context,
+          controller: controllerAnimation,
+          page: CheckYourEmailScreen(
+            email: controllerEmail.text.trim(),
+            redirectToAuthScreen: () {
+              GoRouter.of(Utils.mainNavigation.currentContext!).go(AuthScreen.route);
+            },
+            resendEmail: () {
+              context.read<UserCubit>().resendVerificationEmail(controllerEmail.text.trim());
+            },
+          ),
+        );
+      }
     }
   }
 }

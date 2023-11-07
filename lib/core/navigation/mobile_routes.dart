@@ -8,10 +8,12 @@ import 'package:frontend/features/navigation/data/repository/bottom_bar_reposito
 import 'package:frontend/features/navigation/presentation/bloc/navigation_cubit.dart';
 import 'package:frontend/features/programs_page/presentation/screen/programs_page.dart';
 import 'package:frontend/features/store_page/presentation/screen/store_page.dart';
+import 'package:frontend/features/user_page/presentation/bloc/user_cubit.dart';
 import 'package:frontend/features/user_page/presentation/screens/auth_screen.dart';
 import 'package:frontend/features/user_page/presentation/screens/user_page.dart';
 import 'package:frontend/splash_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_models/shared_models.dart';
 
 class AppRoutes {
   static final router = GoRouter(
@@ -102,8 +104,14 @@ class AppRoutes {
             parentNavigatorKey: Utils.tabNavigation,
             path: UserPage.route,
             pageBuilder: (context, state) {
-              return const NoTransitionPage(
-                child: UserPage(),
+              final userCubit = context.read<UserCubit>();
+              User user = User.empty();
+              userCubit.state.maybeWhen(
+                success: (u) => user = u.copyWith(),
+                orElse: () {},
+              );
+              return NoTransitionPage(
+                child: UserPage(user: user),
               );
             },
           ),

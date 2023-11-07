@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:frontend/core/services/local_storage_service.dart';
 import 'package:frontend/features/auth/domain/repository/repository.dart';
+import 'package:frontend/features/user_page/presentation/bloc/user_cubit.dart';
 import 'package:frontend/service_locator.dart';
 import 'package:shared_models/shared_models.dart';
 
@@ -26,6 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
       if (res) {
         // get user model from local storage
         final user = instance<LocalStorageService>().getUserCache();
+        instance<UserCubit>().applyFromCache(user);
         emit(AuthState.authenticated(user: user));
       } else {
         // clear local storage

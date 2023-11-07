@@ -4,8 +4,8 @@ import 'package:frontend/features/user_page/presentation/bloc/user_cubit.dart';
 import 'package:frontend/features/user_page/presentation/screens/auth_screen.dart';
 import 'package:go_router/go_router.dart';
 
-class CheckYourEmailScreen extends StatelessWidget {
-  const CheckYourEmailScreen({required this.email, super.key});
+class CheckYourEmailDialog extends StatelessWidget {
+  const CheckYourEmailDialog({required this.email, super.key});
 
   final String email;
 

@@ -74,6 +74,10 @@ class UserCubit extends Cubit<UserState> {
     return true;
   }
 
+  void applyFromCache(User data) {
+    emit(UserState.success(user: data));
+  }
+
   /// login event process
   Future<void> logIn(String email, String password) async {
     if (_checkInput(email: email, password: password)) {

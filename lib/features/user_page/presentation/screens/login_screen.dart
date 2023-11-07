@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/common_widgets/button_back.dart';
 import 'package:frontend/common_widgets/button_blue.dart';
 import 'package:frontend/common_widgets/text_field_widget.dart';
 import 'package:frontend/core/common_method.dart';
@@ -37,27 +38,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    // AppNavigationBar
-                    Container(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: GymismoStyles.spacingSmall,
-                      ),
-                      child: GestureDetector(
-                        onTap: () => Navigator.pop(context, 'back'),
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          alignment: Alignment.centerLeft,
-                          child: const Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    const ButtonBack(),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: GymismoStyles.spacingSmall,
@@ -99,7 +80,6 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(
                             height: GymismoStyles.spacingSmall,
                           ),
-                          //LabelWidget(text: Language.current.password),
                           const Text(
                             'Password',
                             style: GymismoStyles.tsFaintBlinker12,

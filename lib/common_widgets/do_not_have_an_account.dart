@@ -1,55 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/common_widgets/selectable_text.dart';
-import 'package:frontend/core/styles/colors.dart';
 import 'package:frontend/core/styles/styles.dart';
 
 class DoNotHaveAnAccount extends StatelessWidget {
-  const DoNotHaveAnAccount({
-    required this.onLoginModeChange,
-    required this.isLogin,
-    super.key,
-  });
-  final VoidCallback onLoginModeChange;
+  const DoNotHaveAnAccount({required this.isLogin, required this.onClick, super.key});
+
   final bool isLogin;
+  final VoidCallback onClick;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Row(
-          children: [
-            Expanded(
-              child: Divider(
-                color: GymismoColors.faint,
-                thickness: 2,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Text(
-                'OR',
-                style: GymismoStyles.tsWhiteArchivo14,
-              ),
-            ),
-            Expanded(
-              child: Divider(
-                color: GymismoColors.faint,
-                thickness: 2,
-              ),
-            ),
-          ],
+        Text(
+          !isLogin ? 'Already have an account?' : 'Don\'t have an account?',
+          style: GymismoStyles.tsWhiteBlinker14,
+          textAlign: TextAlign.start,
         ),
-        GymismoStyles.h16,
-        SelectableTextCustomStyle(
-          text: !isLogin ? 'Already have an account?' : 'Don\'t have an account?',
-          style: GymismoStyles.tsGainsArchivo12,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: SelectableTextCustomStyle(
-            onclick: onLoginModeChange,
-            text: !isLogin ? 'LOG IN' : 'SIGN UP ',
-            style: GymismoStyles.tsTextFieldBorderArchivo12,
+        InkWell(
+          onTap: onClick,
+          child: Padding(
+            padding: const EdgeInsets.only(left: GymismoStyles.spacingExtraSmall),
+            child: Text(
+              !isLogin ? 'Login' : 'Signup',
+              style: GymismoStyles.tsWhiteBlinker14w400,
+              textAlign: TextAlign.start,
+            ),
           ),
         ),
       ],

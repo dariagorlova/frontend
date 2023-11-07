@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/navigation/navigations_keys.dart';
 
 class ProgramsPage extends StatelessWidget {
-  static const String route = '/programs';
+  static const String route = NavigationRouteNames.programsPage;
   const ProgramsPage({super.key});
 
   @override

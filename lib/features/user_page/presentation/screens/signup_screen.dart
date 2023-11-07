@@ -1,122 +1,109 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:frontend/common_widgets/rectangle_button.dart';
-import 'package:go_router/go_router.dart';
+import 'package:frontend/common_widgets/button_back.dart';
+import 'package:frontend/common_widgets/button_blue.dart';
+import 'package:frontend/common_widgets/do_not_have_an_account.dart';
+import 'package:frontend/core/common_method.dart';
+import 'package:frontend/core/styles/colors.dart';
+import 'package:frontend/core/styles/styles.dart';
+import 'package:frontend/features/user_page/presentation/screens/widgets/text_fields_column.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen(
       {required this.controllerEmail,
       required this.controllerPassword,
       required this.controllerName,
+      required this.controllerLastName,
       required this.controllerRefCode,
-      this.signUpAction,
-      this.loginScreenOpen,
+      required this.signUpAction,
+      required this.loginScreenOpen,
       super.key});
 
   final TextEditingController controllerEmail;
   final TextEditingController controllerPassword;
   final TextEditingController controllerName;
+  final TextEditingController controllerLastName;
   final TextEditingController controllerRefCode;
-  final VoidCallback? signUpAction;
-  final VoidCallback? loginScreenOpen;
+  final VoidCallback signUpAction;
+  final VoidCallback loginScreenOpen;
 
   @override
   Widget build(BuildContext context) {
-    final buttonWidth = min<double>(MediaQuery.of(context).size.width * 0.8, 400);
-    const topPanelHeight = 24;
-
+    CommonMethod.statusBarViewTheme();
     return Scaffold(
-      body: GestureDetector(
-        onTap: FocusScope.of(context).unfocus,
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - topPanelHeight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: context.pop,
+      backgroundColor: GymismoColors.backgroundColor,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: ColoredBox(
+                color: GymismoColors.backgroundColor,
+                child: Container(
+                  color: GymismoColors.backgroundColor,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GymismoStyles.spacingSmall,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 50),
-                  child: Text(
-                    'Personal details',
-                    style: TextStyle(fontSize: 36),
-                  ),
-                ),
-                const Spacer(),
-                Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 32),
-                      // TextFieldWidget(
-                      //   controller: controllerEmail,
-                      //   labelText: 'Email',
-                      //   hintText: 'your@email.com',
-                      //   isEmail: true,
-                      //   icon: FontAwesome.mail,
-                      //   width: buttonWidth,
-                      // ),
-                      // const SizedBox(height: 32),
-                      // TextFieldWidget(
-                      //   controller: controllerPassword,
-                      //   icon: FontAwesome.lock,
-                      //   labelText: 'Password',
-                      //   hintText: '********',
-                      //   isPassword: true,
-                      //   width: buttonWidth,
-                      // ),
-                      // const SizedBox(height: 32),
-                      // TextFieldWidget(
-                      //   controller: controllerName,
-                      //   labelText: 'User name',
-                      //   hintText: 'Introduce yourself',
-                      //   icon: FontAwesome.user,
-                      //   width: buttonWidth,
-                      // ),
-                      const SizedBox(height: 40),
-                      RectangleButton(text: 'SIGN UP', onClick: signUpAction, width: buttonWidth),
-                      const SizedBox(height: 40),
+                      const ButtonBack(),
+                      GymismoStyles.h24,
+                      const Text(
+                        'SIGN UP ',
+                        style: GymismoStyles.tsWhiteBlinker12w600,
+                        textAlign: TextAlign.start,
+                      ),
+                      GymismoStyles.h16,
+                      const Text(
+                        'Sign up for Gymismo',
+                        style: GymismoStyles.tsWhiteBlinker26w600,
+                        textAlign: TextAlign.start,
+                      ),
+                      GymismoStyles.h24,
+                      // text fields
+                      TextFieldsColumn(
+                        controllerName: controllerName,
+                        controllerLastName: controllerLastName,
+                        controllerEmail: controllerEmail,
+                        controllerPassword: controllerPassword,
+                        controllerRefCode: controllerRefCode,
+                      ),
+                      GymismoStyles.h24,
+                      const Text(
+                        'By continuing you indicate that you agree to Gymismo’s Terms of Service and Privacy Policy',
+                        style: GymismoStyles.tsFaintBlinker12,
+                        textAlign: TextAlign.start,
+                      ),
+                      GymismoStyles.h50,
                     ],
                   ),
                 ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Already have an account? ',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        context.pop();
-                        loginScreenOpen?.call();
-                      },
-                      child: const Text(
-                        'Sign in',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: GymismoStyles.spacingSmall,
+            ),
+            child: Column(
+              children: [
+                GymismoStyles.h16,
+                Center(
+                  child: ButtonBlue(
+                    text: ' SIGN UP WITH EMAIL',
+                    width: double.infinity,
+                    onClick: signUpAction,
+                  ),
                 ),
-                const SizedBox(height: 60),
+                DoNotHaveAnAccount(
+                  isLogin: false,
+                  onClick: loginScreenOpen,
+                ),
+                GymismoStyles.h50,
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }

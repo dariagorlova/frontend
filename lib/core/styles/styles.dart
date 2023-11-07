@@ -4,11 +4,13 @@ import 'package:frontend/core/styles/colors.dart';
 class GymismoStyles {
   // here we have all of app styles and sizes in one place
 
+  static const h5 = SizedBox(height: 5);
   static const h8 = SizedBox(height: 8);
   static const h16 = SizedBox(height: 16);
   static const h24 = SizedBox(height: 24);
   static const h32 = SizedBox(height: 32);
   static const h40 = SizedBox(height: 40);
+  static const h50 = SizedBox(height: 50);
   static const h68 = SizedBox(height: 68);
 
   static const w8 = SizedBox(width: 8);
@@ -111,10 +113,48 @@ class GymismoStyles {
     fontFamily: 'Blinker',
   );
 
+  static const tsFaintBlinker14w400 = TextStyle(
+    fontSize: 14,
+    color: GymismoColors.faint,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.35,
+    fontFamily: 'Blinker',
+  );
+  static const tsFaintBlinker12w400 = TextStyle(
+    fontSize: 12,
+    color: GymismoColors.faint,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.35,
+    fontFamily: 'Blinker',
+  );
+
   static const tsSilverBlinker18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: GymismoColors.silver,
+    fontFamily: 'Blinker',
+  );
+
+  static const tsWhiteBlinker12w600 = TextStyle(
+    fontSize: 12,
+    color: GymismoColors.white,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.55,
+    fontFamily: 'Blinker',
+  );
+
+  static const tsWhiteBlinker26w600 = TextStyle(
+    fontSize: 26,
+    color: GymismoColors.white,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.55,
+    fontFamily: 'Blinker',
+  );
+
+  static const tsTextFieldFocusBorderBlinker14w400 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: GymismoColors.textFieldFocusBorder,
     fontFamily: 'Blinker',
   );
 }

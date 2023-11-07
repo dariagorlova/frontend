@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/navigation/navigations_keys.dart';
 import 'package:frontend/core/styles/colors.dart';
 import 'package:frontend/features/navigation/presentation/widget/bottom_bar.dart';
 
 class MainTabScreen extends StatelessWidget {
-  static const String route = '/main_tab';
+  static const String route = NavigationRouteNames.mainTabScreen;
   const MainTabScreen({required this.child, super.key});
 
   final Widget child;

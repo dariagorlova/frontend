@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/navigation/navigations_keys.dart';
 
 class StorePage extends StatelessWidget {
-  static const String route = '/store';
+  static const String route = NavigationRouteNames.storePage;
   const StorePage({super.key});
 
   @override

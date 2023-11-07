@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:frontend/core/navigation/app.routes.dart';
+import 'package:frontend/core/navigation/mobile_routes.dart';
 import 'package:frontend/core/styles/themes.dart';
 
 class MobileApp extends StatelessWidget {

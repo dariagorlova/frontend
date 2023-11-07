@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:frontend/core/navigation/navigations_keys.dart';
 import 'package:frontend/core/services/toast_service.dart';
 import 'package:frontend/core/styles/images.dart';
 import 'package:frontend/core/utils/utils.dart';
@@ -8,7 +9,7 @@ import 'package:frontend/features/main_page/presentation/screen/main_page.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String route = '/splash';
+  static const String route = NavigationRouteNames.splashScreen;
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
